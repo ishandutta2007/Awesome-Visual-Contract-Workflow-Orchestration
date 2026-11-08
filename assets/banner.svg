@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="nodeGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="glow-light" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    .grid-line { stroke: #1e293b; stroke-width: 1; stroke-opacity: 0.35; }
+    .flow-line { fill: none; stroke-dasharray: 8 6; animation: dash 20s linear infinite; }
+    .flow-line-cyan { stroke: #38bdf8; stroke-width: 2; opacity: 0.45; }
+    .flow-line-purple { stroke: #a855f7; stroke-width: 2; opacity: 0.45; }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -200;
+      }
+    }
+
+    @keyframes pulseOrb {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.15); opacity: 0.55; }
+    }
+
+    @keyframes nodeFloat1 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes nodeFloat2 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(7px); }
+    }
+
+    .anim-orb-1 { transform-origin: 200px 100px; animation: pulseOrb 8s ease-in-out infinite; }
+    .anim-orb-2 { transform-origin: 1000px 260px; animation: pulseOrb 10s ease-in-out infinite 2s; }
+    .anim-node-1 { animation: nodeFloat1 6s ease-in-out infinite; }
+    .anim-node-2 { animation: nodeFloat2 7s ease-in-out infinite 1s; }
+
+    .title-text {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle-text {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 17px;
+      fill: #94a3b8;
+      letter-spacing: 0.2px;
+    }
+    .badge-text {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      fill: #38bdf8;
+    }
+    .node-text {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      fill: #cbd5e1;
+    }
+  </style>
+
+  <!-- Background Base -->
+  <rect width="1200" height="360" rx="16" fill="url(#bgGrad)" />
+
+  <!-- Ambient Glow Orbs in Background -->
+  <circle class="anim-orb-1" cx="200" cy="100" r="140" fill="#38bdf8" filter="url(#glow-light)" opacity="0.3" />
+  <circle class="anim-orb-2" cx="1000" cy="260" r="160" fill="#818cf8" filter="url(#glow-light)" opacity="0.25" />
+  <circle cx="600" cy="180" r="180" fill="#c084fc" filter="url(#glow-light)" opacity="0.12" />
+
+  <!-- Blueprint Coordinate Grid Lines -->
+  <g class="grid-layer">
+    <line x1="0" y1="60" x2="1200" y2="60" class="grid-line" />
+    <line x1="0" y1="120" x2="1200" y2="120" class="grid-line" />
+    <line x1="0" y1="180" x2="1200" y2="180" class="grid-line" />
+    <line x1="0" y1="240" x2="1200" y2="240" class="grid-line" />
+    <line x1="0" y1="300" x2="1200" y2="300" class="grid-line" />
+    <line x1="150" y1="0" x2="150" y2="360" class="grid-line" />
+    <line x1="300" y1="0" x2="300" y2="360" class="grid-line" />
+    <line x1="450" y1="0" x2="450" y2="360" class="grid-line" />
+    <line x1="600" y1="0" x2="600" y2="360" class="grid-line" />
+    <line x1="750" y1="0" x2="750" y2="360" class="grid-line" />
+    <line x1="900" y1="0" x2="900" y2="360" class="grid-line" />
+    <line x1="1050" y1="0" x2="1050" y2="360" class="grid-line" />
+  </g>
+
+  <!-- Dynamic Orchestration Path Connections (Behind Text) -->
+  <g>
+    <!-- Background Workflow bezier curves -->
+    <path class="flow-line flow-line-cyan" d="M 60 70 C 180 30, 220 140, 340 90 S 480 40, 600 70 S 820 140, 950 80 S 1100 40, 1150 90" />
+    <path class="flow-line flow-line-purple" d="M 50 280 C 180 320, 260 210, 400 270 S 650 330, 780 270 S 980 210, 1140 280" />
+    <path class="flow-line flow-line-cyan" d="M 120 180 C 260 180, 280 290, 440 290" />
+    <path class="flow-line flow-line-purple" d="M 760 70 C 900 70, 940 180, 1080 180" />
+  </g>
+
+  <!-- Left Side Dynamic Floating Workflow Cards -->
+  <g class="anim-node-1">
+    <!-- Intake / Drafting Card -->
+    <rect x="50" y="95" width="160" height="52" rx="10" fill="url(#nodeGrad1)" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.6" filter="url(#glow)" />
+    <circle cx="70" cy="121" r="5" fill="#38bdf8" />
+    <text x="86" y="117" class="node-text" fill="#f8fafc">Intake &amp; Draft</text>
+    <text x="86" y="132" class="node-text" font-size="9" fill="#94a3b8">BPMN 2.0 / Forms</text>
+
+    <!-- Visual Signoff Card -->
+    <rect x="90" y="220" width="160" height="52" rx="10" fill="url(#nodeGrad1)" stroke="#818cf8" stroke-width="1.2" stroke-opacity="0.6" filter="url(#glow)" />
+    <circle cx="110" cy="246" r="5" fill="#818cf8" />
+    <text x="126" y="242" class="node-text" fill="#f8fafc">Multi-Party Review</text>
+    <text x="126" y="257" class="node-text" font-size="9" fill="#94a3b8">Role-based Routing</text>
+  </g>
+
+  <!-- Right Side Dynamic Floating Workflow Cards -->
+  <g class="anim-node-2">
+    <!-- Agentic Redline Node -->
+    <rect x="980" y="85" width="170" height="52" rx="10" fill="url(#nodeGrad1)" stroke="#c084fc" stroke-width="1.2" stroke-opacity="0.6" filter="url(#glow)" />
+    <circle cx="1000" cy="111" r="5" fill="#c084fc" />
+    <text x="1016" y="107" class="node-text" fill="#f8fafc">AI Agentic Redline</text>
+    <text x="1016" y="122" class="node-text" font-size="9" fill="#94a3b8">Guardrails &amp; Citations</text>
+
+    <!-- Execution & Signature Node -->
+    <rect x="950" y="210" width="180" height="52" rx="10" fill="url(#nodeGrad1)" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.6" filter="url(#glow)" />
+    <circle cx="970" cy="236" r="5" fill="#34d399" />
+    <text x="986" y="232" class="node-text" fill="#f8fafc">E-Sign &amp; Obligations</text>
+    <text x="986" y="247" class="node-text" font-size="9" fill="#94a3b8">Trigger Downstream ERP</text>
+  </g>
+
+  <!-- FOREGROUND: Content Card & Typography (Guaranteed Unobscured) -->
+  <g id="foreground-content">
+    <!-- Center Semi-translucent Backplate for Pristine Contrast -->
+    <rect x="250" y="42" width="700" height="276" rx="14" fill="#090d16" fill-opacity="0.78" stroke="#334155" stroke-width="1" />
+
+    <!-- Top Badge Pill -->
+    <rect x="440" y="65" width="320" height="28" rx="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.7" />
+    <circle cx="456" cy="79" r="4" fill="#38bdf8" />
+    <text x="470" y="83" class="badge-text">CURATED LEGALTECH &amp; CLM ECOSYSTEM</text>
+
+    <!-- Main Title -->
+    <text x="600" y="148" text-anchor="middle" class="title-text" fill="url(#primaryGrad)">Visual Contract Workflow</text>
+    <text x="600" y="196" text-anchor="middle" class="title-text" fill="#f8fafc">Orchestration</text>
+
+    <!-- Subtitle -->
+    <text x="600" y="242" text-anchor="middle" class="subtitle-text">
+      The Ultimate Guide to Enterprise CLM Engines, Agentic Builders &amp; Open-Source Automation
+    </text>
+
+    <!-- Technology Feature Badges / Chips -->
+    <g transform="translate(325, 268)">
+      <!-- Chip 1 -->
+      <rect x="0" y="0" width="118" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+      <text x="59" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">⚡ BPMN 2.0</text>
+
+      <!-- Chip 2 -->
+      <rect x="130" y="0" width="138" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+      <text x="199" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">🤖 Agentic Workflows</text>
+
+      <!-- Chip 3 -->
+      <rect x="280" y="0" width="138" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+      <text x="349" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">📝 No-Code Builders</text>
+
+      <!-- Chip 4 -->
+      <rect x="430" y="0" width="120" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
+      <text x="490" y="16" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">🛡️ Open-Source</text>
+    </g>
+  </g>
+</svg>
